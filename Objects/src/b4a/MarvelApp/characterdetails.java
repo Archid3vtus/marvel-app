@@ -330,10 +330,13 @@ public class characterdetails extends Activity implements B4AActivity{
 
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static String _selected = "";
-public anywheresoftware.b4a.objects.LabelWrapper _chardetail = null;
+public anywheresoftware.b4a.objects.ScrollViewWrapper _chardetail = null;
+public anywheresoftware.b4a.objects.LabelWrapper _chardetailtext = null;
 public anywheresoftware.b4a.objects.ImageViewWrapper _charimage = null;
 public anywheresoftware.b4a.objects.LabelWrapper _charname = null;
 public anywheresoftware.b4a.objects.ListViewWrapper _charrelated = null;
+public anywheresoftware.b4a.objects.LabelWrapper _linkslabel = null;
+public anywheresoftware.b4a.objects.ScrollViewWrapper _charlinks = null;
 public b4a.MarvelApp.charactercontroller _character = null;
 public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2service = null;
 public b4a.MarvelApp.main _main = null;
@@ -350,88 +353,165 @@ public static void initializeProcessGlobals() {
 public static String  _activity_create(boolean _firsttime) throws Exception{
 anywheresoftware.b4a.objects.collections.Map _thumbnail = null;
 String _imageurl = "";
- //BA.debugLineNum = 25;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 28;BA.debugLine="Activity.LoadLayout(\"CharacterDetails\")";
+anywheresoftware.b4a.objects.collections.List _links = null;
+ //BA.debugLineNum = 28;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 31;BA.debugLine="Activity.LoadLayout(\"CharacterDetails\")";
 mostCurrent._activity.LoadLayout("CharacterDetails",mostCurrent.activityBA);
- //BA.debugLineNum = 29;BA.debugLine="character.Initialize(Me)";
-mostCurrent._character._initialize /*String*/ (processBA,characterdetails.getObject());
- //BA.debugLineNum = 31;BA.debugLine="Dim thumbnail As Map = Main.selected.Get(\"thumbna";
+ //BA.debugLineNum = 33;BA.debugLine="Dim thumbnail As Map = Main.selected.Get(\"thumbna";
 _thumbnail = new anywheresoftware.b4a.objects.collections.Map();
 _thumbnail.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("thumbnail"))));
- //BA.debugLineNum = 32;BA.debugLine="Dim imageUrl As String = thumbnail.Get(\"path\") &";
+ //BA.debugLineNum = 34;BA.debugLine="Dim imageUrl As String = thumbnail.Get(\"path\") &";
 _imageurl = BA.ObjectToString(_thumbnail.Get((Object)("path")))+"/portrait_xlarge."+BA.ObjectToString(_thumbnail.Get((Object)("extension")));
- //BA.debugLineNum = 34;BA.debugLine="charDetail.Text = Main.selected.Get(\"description\"";
-mostCurrent._chardetail.setText(BA.ObjectToCharSequence(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("description"))));
- //BA.debugLineNum = 36;BA.debugLine="charName.Text = Main.selected.Get(\"name\") & \" det";
-mostCurrent._charname.setText(BA.ObjectToCharSequence(BA.ObjectToString(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("name")))+" details"));
- //BA.debugLineNum = 38;BA.debugLine="charRelated.SingleLineLayout.Label.TextColor = Co";
-mostCurrent._charrelated.getSingleLineLayout().Label.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Gray);
- //BA.debugLineNum = 39;BA.debugLine="charRelated.AddSingleLine(\"Comics\")";
-mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Comics"));
- //BA.debugLineNum = 40;BA.debugLine="charRelated.AddSingleLine(\"Series\")";
-mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Series"));
- //BA.debugLineNum = 41;BA.debugLine="charRelated.AddSingleLine(\"Stories\")";
-mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Stories"));
- //BA.debugLineNum = 42;BA.debugLine="charRelated.AddSingleLine(\"Events\")";
-mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Events"));
- //BA.debugLineNum = 44;BA.debugLine="character.DownloadImage(imageUrl)";
+ //BA.debugLineNum = 35;BA.debugLine="character.Initialize(Me)";
+mostCurrent._character._initialize /*String*/ (processBA,characterdetails.getObject());
+ //BA.debugLineNum = 36;BA.debugLine="character.DownloadImage(imageUrl)";
 mostCurrent._character._downloadimage /*String*/ (_imageurl);
- //BA.debugLineNum = 46;BA.debugLine="End Sub";
+ //BA.debugLineNum = 39;BA.debugLine="charDetailText.Initialize(\"\")";
+mostCurrent._chardetailtext.Initialize(mostCurrent.activityBA,"");
+ //BA.debugLineNum = 40;BA.debugLine="charDetail.Panel.AddView(charDetailText, 0, 0, ch";
+mostCurrent._chardetail.getPanel().AddView((android.view.View)(mostCurrent._chardetailtext.getObject()),(int) (0),(int) (0),mostCurrent._chardetail.getWidth(),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA));
+ //BA.debugLineNum = 41;BA.debugLine="charDetailText.Text = Main.selected.Get(\"descript";
+mostCurrent._chardetailtext.setText(BA.ObjectToCharSequence(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("description"))));
+ //BA.debugLineNum = 42;BA.debugLine="charDetailText.TextSize = 16";
+mostCurrent._chardetailtext.setTextSize((float) (16));
+ //BA.debugLineNum = 43;BA.debugLine="charDetailText.TextColor = Colors.Gray";
+mostCurrent._chardetailtext.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Gray);
+ //BA.debugLineNum = 45;BA.debugLine="charName.Text = Main.selected.Get(\"name\") & \" det";
+mostCurrent._charname.setText(BA.ObjectToCharSequence(BA.ObjectToString(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("name")))+" details"));
+ //BA.debugLineNum = 47;BA.debugLine="charRelated.SingleLineLayout.Label.TextColor = Co";
+mostCurrent._charrelated.getSingleLineLayout().Label.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Gray);
+ //BA.debugLineNum = 48;BA.debugLine="charRelated.AddSingleLine(\"Comics\")";
+mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Comics"));
+ //BA.debugLineNum = 49;BA.debugLine="charRelated.AddSingleLine(\"Series\")";
+mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Series"));
+ //BA.debugLineNum = 50;BA.debugLine="charRelated.AddSingleLine(\"Stories\")";
+mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Stories"));
+ //BA.debugLineNum = 51;BA.debugLine="charRelated.AddSingleLine(\"Events\")";
+mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Events"));
+ //BA.debugLineNum = 53;BA.debugLine="Dim links As List = Main.selected.Get(\"urls\")";
+_links = new anywheresoftware.b4a.objects.collections.List();
+_links.setObject((java.util.List)(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("urls"))));
+ //BA.debugLineNum = 54;BA.debugLine="If links.Size > 0 Then";
+if (_links.getSize()>0) { 
+ //BA.debugLineNum = 55;BA.debugLine="linksLabel.Visible = True";
+mostCurrent._linkslabel.setVisible(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 56;BA.debugLine="addLinks(links)";
+_addlinks(_links);
+ };
+ //BA.debugLineNum = 58;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 52;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 54;BA.debugLine="End Sub";
+ //BA.debugLineNum = 64;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 66;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 48;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 50;BA.debugLine="End Sub";
+ //BA.debugLineNum = 60;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 62;BA.debugLine="End Sub";
+return "";
+}
+public static String  _addlinks(anywheresoftware.b4a.objects.collections.List _links) throws Exception{
+int _position = 0;
+anywheresoftware.b4a.objects.collections.Map _link = null;
+anywheresoftware.b4a.objects.LabelWrapper _linklabel = null;
+ //BA.debugLineNum = 74;BA.debugLine="Sub addLinks(links As List)";
+ //BA.debugLineNum = 75;BA.debugLine="Dim position As Int = 0";
+_position = (int) (0);
+ //BA.debugLineNum = 76;BA.debugLine="For Each link As Map In links";
+_link = new anywheresoftware.b4a.objects.collections.Map();
+{
+final anywheresoftware.b4a.BA.IterableList group2 = _links;
+final int groupLen2 = group2.getSize()
+;int index2 = 0;
+;
+for (; index2 < groupLen2;index2++){
+_link.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(group2.Get(index2)));
+ //BA.debugLineNum = 77;BA.debugLine="Dim linkLabel As Label";
+_linklabel = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 78;BA.debugLine="linkLabel.Initialize(\"link\")";
+_linklabel.Initialize(mostCurrent.activityBA,"link");
+ //BA.debugLineNum = 79;BA.debugLine="linkLabel.Text = \"• \" & link.Get(\"type\")";
+_linklabel.setText(BA.ObjectToCharSequence("• "+BA.ObjectToString(_link.Get((Object)("type")))));
+ //BA.debugLineNum = 80;BA.debugLine="linkLabel.Tag = link.Get(\"url\")";
+_linklabel.setTag(_link.Get((Object)("url")));
+ //BA.debugLineNum = 81;BA.debugLine="linkLabel.TextSize = 28";
+_linklabel.setTextSize((float) (28));
+ //BA.debugLineNum = 82;BA.debugLine="linkLabel.TextColor = Colors.Blue";
+_linklabel.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Blue);
+ //BA.debugLineNum = 84;BA.debugLine="charLinks.Panel.AddView(linkLabel, 0, position,";
+mostCurrent._charlinks.getPanel().AddView((android.view.View)(_linklabel.getObject()),(int) (0),_position,mostCurrent._charlinks.getWidth(),(int) (_linklabel.getTextSize()*4));
+ //BA.debugLineNum = 85;BA.debugLine="position = position + linkLabel.TextSize*4 + 20";
+_position = (int) (_position+_linklabel.getTextSize()*4+20);
+ }
+};
+ //BA.debugLineNum = 87;BA.debugLine="End Sub";
 return "";
 }
 public static String  _charrelated_itemclick(int _position,Object _value) throws Exception{
- //BA.debugLineNum = 57;BA.debugLine="Sub charRelated_ItemClick (Position As Int, Value";
- //BA.debugLineNum = 58;BA.debugLine="selected = Value";
+ //BA.debugLineNum = 69;BA.debugLine="Sub charRelated_ItemClick (Position As Int, Value";
+ //BA.debugLineNum = 70;BA.debugLine="selected = Value";
 _selected = BA.ObjectToString(_value);
- //BA.debugLineNum = 59;BA.debugLine="StartActivity(CharRelatedInfoView)";
+ //BA.debugLineNum = 71;BA.debugLine="StartActivity(CharRelatedInfoView)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._charrelatedinfoview.getObject()));
- //BA.debugLineNum = 60;BA.debugLine="End Sub";
+ //BA.debugLineNum = 72;BA.debugLine="End Sub";
 return "";
 }
 public static String  _globals() throws Exception{
  //BA.debugLineNum = 13;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 17;BA.debugLine="Private charDetail As Label";
-mostCurrent._chardetail = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 18;BA.debugLine="Private charImage As ImageView";
+ //BA.debugLineNum = 17;BA.debugLine="Private charDetail As ScrollView";
+mostCurrent._chardetail = new anywheresoftware.b4a.objects.ScrollViewWrapper();
+ //BA.debugLineNum = 18;BA.debugLine="Private charDetailText As Label 'not added from d";
+mostCurrent._chardetailtext = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 19;BA.debugLine="Private charImage As ImageView";
 mostCurrent._charimage = new anywheresoftware.b4a.objects.ImageViewWrapper();
- //BA.debugLineNum = 19;BA.debugLine="Private charName As Label";
+ //BA.debugLineNum = 20;BA.debugLine="Private charName As Label";
 mostCurrent._charname = new anywheresoftware.b4a.objects.LabelWrapper();
- //BA.debugLineNum = 20;BA.debugLine="Private charRelated As ListView";
+ //BA.debugLineNum = 21;BA.debugLine="Private charRelated As ListView";
 mostCurrent._charrelated = new anywheresoftware.b4a.objects.ListViewWrapper();
- //BA.debugLineNum = 22;BA.debugLine="Private character As CharacterController";
+ //BA.debugLineNum = 22;BA.debugLine="Private linksLabel As Label";
+mostCurrent._linkslabel = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 23;BA.debugLine="Private charLinks As ScrollView";
+mostCurrent._charlinks = new anywheresoftware.b4a.objects.ScrollViewWrapper();
+ //BA.debugLineNum = 25;BA.debugLine="Private character As CharacterController";
 mostCurrent._character = new b4a.MarvelApp.charactercontroller();
- //BA.debugLineNum = 23;BA.debugLine="End Sub";
+ //BA.debugLineNum = 26;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.samples.httputils2.httpjob  _jobdone(anywheresoftware.b4a.samples.httputils2.httpjob _job) throws Exception{
- //BA.debugLineNum = 62;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
- //BA.debugLineNum = 63;BA.debugLine="If Job.Success = True Then";
+ //BA.debugLineNum = 89;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
+ //BA.debugLineNum = 90;BA.debugLine="If Job.Success = True Then";
 if (_job._vvv7==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 64;BA.debugLine="Select Job.JobName";
+ //BA.debugLineNum = 91;BA.debugLine="Select Job.JobName";
 switch (BA.switchObjectToInt(_job._vvv6,"DownloadImage")) {
 case 0: {
- //BA.debugLineNum = 66;BA.debugLine="charImage.Bitmap = Job.GetBitmap";
+ //BA.debugLineNum = 93;BA.debugLine="charImage.Bitmap = Job.GetBitmap";
 mostCurrent._charimage.setBitmap((android.graphics.Bitmap)(_job._vv1().getObject()));
- //BA.debugLineNum = 67;BA.debugLine="Exit";
+ //BA.debugLineNum = 94;BA.debugLine="Exit";
 if (true) break;
  break; }
 }
 ;
  };
- //BA.debugLineNum = 70;BA.debugLine="Job.Release";
+ //BA.debugLineNum = 97;BA.debugLine="Job.Release";
 _job._vvv5();
- //BA.debugLineNum = 71;BA.debugLine="End Sub";
+ //BA.debugLineNum = 98;BA.debugLine="End Sub";
 return null;
+}
+public static String  _link_click() throws Exception{
+anywheresoftware.b4a.objects.LabelWrapper _lblsender = null;
+anywheresoftware.b4a.phone.Phone.PhoneIntents _p = null;
+ //BA.debugLineNum = 100;BA.debugLine="Sub link_Click";
+ //BA.debugLineNum = 101;BA.debugLine="Dim lblSender As Label";
+_lblsender = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 102;BA.debugLine="Dim p As PhoneIntents";
+_p = new anywheresoftware.b4a.phone.Phone.PhoneIntents();
+ //BA.debugLineNum = 103;BA.debugLine="lblSender = Sender";
+_lblsender.setObject((android.widget.TextView)(anywheresoftware.b4a.keywords.Common.Sender(mostCurrent.activityBA)));
+ //BA.debugLineNum = 105;BA.debugLine="StartActivity(p.OpenBrowser(lblSender.Tag))";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(_p.OpenBrowser(BA.ObjectToString(_lblsender.getTag()))));
+ //BA.debugLineNum = 106;BA.debugLine="End Sub";
+return "";
 }
 public static String  _process_globals() throws Exception{
  //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";

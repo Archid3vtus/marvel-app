@@ -13,6 +13,6 @@ ModuleClosedNodes1=
 ModuleClosedNodes2=
 ModuleClosedNodes3=
 ModuleClosedNodes4=
-NavigationStack=Main,JobDone,58,0,CharacterDetails,Globals,23,5,CharacterController,GetCharacter,20,0,CharacterController,DownloadImage,22,6,CharacterDetails,JobDone,66,6,CharacterDetails,charRelated_ItemClick,59,0,Visual Designer,CharacterDetails.bal,-100,6,Visual Designer,Search.bal,-100,6,CharRelatedInfoView,GenerateContent,50,0,CharacterDetails,Activity_Create,41,6
+NavigationStack=CharacterController,DownloadImage,22,6,CharacterDetails,JobDone,66,6,Visual Designer,Search.bal,-100,6,CharacterDetails,Globals,17,6,CharacterDetails,charRelated_ItemClick,70,0,CharacterDetails,link_Click,102,6,Visual Designer,CharacterDetails.bal,-100,6,CharRelatedInfoView,GenerateContent,50,0,CharacterDetails,Activity_Create,54,6,CharacterDetails,addLinks,78,6
 SelectedBuild=0
 VisibleModules=1,2,3,4
