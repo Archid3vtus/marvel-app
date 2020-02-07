@@ -11,13 +11,13 @@ import anywheresoftware.b4a.pc.Debug;
 import anywheresoftware.b4a.pc.B4XTypes.B4XClass;
 import anywheresoftware.b4a.pc.B4XTypes.DeviceClass;
 
-public class main implements IRemote{
-	public static main mostCurrent;
+public class characterdetails implements IRemote{
+	public static characterdetails mostCurrent;
 	public static RemoteObject processBA;
     public static boolean processGlobalsRun;
     public static RemoteObject myClass;
     public static RemoteObject remoteMe;
-	public main() {
+	public characterdetails() {
 		mostCurrent = this;
 	}
     public RemoteObject getRemoteMe() {
@@ -30,7 +30,7 @@ public class main implements IRemote{
 
 	}
     static {
-        anywheresoftware.b4a.pc.RapidSub.moduleToObject.put(new B4XClass("main"), "b4a.MarvelApp.main");
+        anywheresoftware.b4a.pc.RapidSub.moduleToObject.put(new B4XClass("characterdetails"), "b4a.MarvelApp.characterdetails");
 	}
 
 public boolean isSingleton() {
@@ -50,25 +50,22 @@ public boolean isSingleton() {
 		_activity = (RemoteObject) args[3];
         anywheresoftware.b4a.keywords.Common.Density = (Float)args[4];
         remoteMe = (RemoteObject) args[5];
-		pcBA = new PCBA(this, main.class);
+		pcBA = new PCBA(this, characterdetails.class);
         main_subs_0.initializeProcessGlobals();
 		return pcBA;
 	}
 public static RemoteObject __c = RemoteObject.declareNull("anywheresoftware.b4a.keywords.Common");
-public static RemoteObject _selected = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.Map");
+public static RemoteObject _selected = RemoteObject.createImmutable("");
+public static RemoteObject _chardetail = RemoteObject.declareNull("anywheresoftware.b4a.objects.LabelWrapper");
+public static RemoteObject _charimage = RemoteObject.declareNull("anywheresoftware.b4a.objects.ImageViewWrapper");
+public static RemoteObject _charname = RemoteObject.declareNull("anywheresoftware.b4a.objects.LabelWrapper");
+public static RemoteObject _charrelated = RemoteObject.declareNull("anywheresoftware.b4a.objects.ListViewWrapper");
 public static RemoteObject _character = RemoteObject.declareNull("b4a.MarvelApp.charactercontroller");
-public static RemoteObject _jsonparser = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.JSONParser");
-public static RemoteObject _ime = RemoteObject.declareNull("anywheresoftware.b4a.objects.IME");
-public static RemoteObject _charlist = RemoteObject.declareNull("anywheresoftware.b4a.objects.ListViewWrapper");
-public static RemoteObject _searchbar = RemoteObject.declareNull("anywheresoftware.b4a.objects.EditTextWrapper");
-public static RemoteObject _send = RemoteObject.declareNull("anywheresoftware.b4a.objects.ButtonWrapper");
-public static RemoteObject _loading = RemoteObject.declareNull("anywheresoftware.b4a.objects.ProgressBarWrapper");
-public static RemoteObject _characterlist = RemoteObject.declareNull("anywheresoftware.b4a.objects.collections.List");
 public static RemoteObject _httputils2service = RemoteObject.declareNull("anywheresoftware.b4a.samples.httputils2.httputils2service");
+public static b4a.MarvelApp.main _main = null;
 public static b4a.MarvelApp.url _url = null;
-public static b4a.MarvelApp.characterdetails _characterdetails = null;
 public static b4a.MarvelApp.charrelatedinfoview _charrelatedinfoview = null;
   public Object[] GetGlobals() {
-		return new Object[] {"Activity",main.mostCurrent._activity,"character",main.mostCurrent._character,"CharacterDetails",Debug.moduleToString(b4a.MarvelApp.characterdetails.class),"characterList",main.mostCurrent._characterlist,"charList",main.mostCurrent._charlist,"CharRelatedInfoView",Debug.moduleToString(b4a.MarvelApp.charrelatedinfoview.class),"HttpUtils2Service",main.mostCurrent._httputils2service,"IME",main.mostCurrent._ime,"jsonParser",main.mostCurrent._jsonparser,"loading",main.mostCurrent._loading,"searchBar",main.mostCurrent._searchbar,"selected",main._selected,"send",main.mostCurrent._send,"url",Debug.moduleToString(b4a.MarvelApp.url.class)};
+		return new Object[] {"Activity",characterdetails.mostCurrent._activity,"character",characterdetails.mostCurrent._character,"charDetail",characterdetails.mostCurrent._chardetail,"charImage",characterdetails.mostCurrent._charimage,"charName",characterdetails.mostCurrent._charname,"charRelated",characterdetails.mostCurrent._charrelated,"CharRelatedInfoView",Debug.moduleToString(b4a.MarvelApp.charrelatedinfoview.class),"HttpUtils2Service",characterdetails.mostCurrent._httputils2service,"Main",Debug.moduleToString(b4a.MarvelApp.main.class),"selected",characterdetails._selected,"url",Debug.moduleToString(b4a.MarvelApp.url.class)};
 }
 }

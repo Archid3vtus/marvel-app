@@ -19,7 +19,7 @@
 		android:label="Marvel App"
 		android:theme="@style/LightTheme">
 		<activity
-			android:windowSoftInputMode="stateHidden"
+			android:windowSoftInputMode="adjustResize|stateHidden"
 			android:launchMode="singleTop"
 			android:name=".main"
 			android:label="Marvel App"
@@ -29,6 +29,20 @@
 			   <category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 			
+		</activity>
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".characterdetails"
+			android:label="Marvel App"
+			android:screenOrientation="unspecified">
+		</activity>
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".charrelatedinfoview"
+			android:label="Marvel App"
+			android:screenOrientation="unspecified">
 		</activity>
 		<service android:name="anywheresoftware.b4a.samples.httputils2.httputils2service">
 		</service>

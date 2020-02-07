@@ -12,6 +12,7 @@ End Sub
 'Initializes the object. You can add parameters to this method if needed.
 Public Sub Initialize(received As Object)
 	toBeSent = received
+	
 End Sub
 
 Public Sub GetCharacter(name As String, limit As Int)
@@ -20,5 +21,10 @@ Public Sub GetCharacter(name As String, limit As Int)
 		address = address & "&nameStartsWith=" & name
 	End If
 	http.Initialize("GetCharacter", toBeSent, False)
+	http.Download(address)
+End Sub
+
+Public Sub DownloadImage(address As String)
+	http.Initialize("DownloadImage", toBeSent, False)
 	http.Download(address)
 End Sub

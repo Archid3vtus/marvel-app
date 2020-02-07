@@ -1,17 +1,24 @@
 ﻿Build1=Default,b4a.MarvelApp
-File1=Search.bal
+File1=CharacterDetails.bal
+File2=CharRelatedInfoView.bal
+File3=Search.bal
 FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
 Group=Default Group
 IconFile=
 Library1=core
 Library2=okhttputils3
 Library3=json
-ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.
+Library4=ime
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.LightTheme)~\n~'End of default text.~\n~~\n~SetActivityAttribute(Main, android:windowSoftInputMode, adjustResize|stateHidden)
 Module1=CharacterController
 Module2=url
-NumberOfFiles=1
-NumberOfLibraries=3
-NumberOfModules=2
+Module3=CharacterDetails
+Module4=CharRelatedInfoView
+NumberOfFiles=3
+NumberOfLibraries=4
+NumberOfModules=4
 Version=9.5
 @EndOfDesignText@
 #Region  Project Attributes 
@@ -32,6 +39,7 @@ Sub Process_Globals
 	'These global variables will be declared once when the application starts.
 	'These variables can be accessed from all modules.
 
+	Public selected As Map
 End Sub
 
 Sub Globals
@@ -40,21 +48,27 @@ Sub Globals
 	
 	'Classes and other dependencies
 	Private character As CharacterController
-	Private json As JSONParser
+	Private jsonParser As JSONParser
+	Private IME As IME
 
 	'Views
 	Private charList As ListView
 	Private searchBar As EditText
 	Private send As Button
+	Private loading As ProgressBar
+	
+	'Global Variables
+	Private characterList As List
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	'Do not forget to load the layout file created with the visual designer. For example:
 	'Activity.LoadLayout("Layout1")
 	Activity.LoadLayout("Search")
+	IME.Initialize("IME")
+	IME.AddHeightChangedEvent
 	charList.SingleLineLayout.Label.TextColor = Colors.Black
 	character.Initialize(Me)
-	'character.GetCharacter("a",99)
 End Sub
 
 Sub Activity_Resume
@@ -69,13 +83,15 @@ Sub JobDone(Job As HttpJob) As HttpJob
 	If Job.Success = True Then
 		Select Job.JobName
 			Case "GetCharacter":
-				json.Initialize(Job.GetString)
-				Dim data As Map = json.NextObject.Get("data")
-				Dim characterList As List = data.Get("results")
+				jsonParser.Initialize(Job.GetString)
+				Dim data As Map = jsonParser.NextObject.Get("data")
+				characterList = data.Get("results")
 				For Each entry As Map In characterList
 					charList.AddSingleLine(entry.Get("name"))
 				Next
 				
+				loading.Visible = False
+				loading.Enabled = False
 				Exit
 		End Select
 	End If
@@ -85,5 +101,19 @@ End Sub
 
 Sub send_Click
 	charList.Clear
+	loading.Enabled = True
+	loading.Visible = True
+	
 	character.GetCharacter(searchBar.Text, "99")
+End Sub
+
+Sub charList_ItemClick (Position As Int, Value As Object)
+	selected = characterList.Get(Position)
+	StartActivity(CharacterDetails)
+End Sub
+
+Sub IME_HeightChanged(NewHeight As Int, OldHeight As Int)
+	searchBar.Top = NewHeight - searchBar.Height
+	send.Top = NewHeight - send.Height
+	charList.Height = searchBar.Top - charList.Top
 End Sub
