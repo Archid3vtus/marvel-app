@@ -33,7 +33,7 @@ public class characterdetails extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.characterdetails");
+			processBA = new BA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.characterdetails");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -328,15 +328,6 @@ public class characterdetails extends Activity implements B4AActivity{
             
     }
 
-
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static String _selected = "";
 public anywheresoftware.b4a.objects.LabelWrapper _chardetail = null;
@@ -348,114 +339,105 @@ public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2serv
 public b4a.MarvelApp.main _main = null;
 public b4a.MarvelApp.url _url = null;
 public b4a.MarvelApp.charrelatedinfoview _charrelatedinfoview = null;
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public static String  _activity_create(boolean _firsttime) throws Exception{
-RDebugUtils.currentModule="characterdetails";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
 anywheresoftware.b4a.objects.collections.Map _thumbnail = null;
 String _imageurl = "";
-RDebugUtils.currentLine=1048576;
- //BA.debugLineNum = 1048576;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
-RDebugUtils.currentLine=1048579;
- //BA.debugLineNum = 1048579;BA.debugLine="Activity.LoadLayout(\"CharacterDetails\")";
+ //BA.debugLineNum = 25;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 28;BA.debugLine="Activity.LoadLayout(\"CharacterDetails\")";
 mostCurrent._activity.LoadLayout("CharacterDetails",mostCurrent.activityBA);
-RDebugUtils.currentLine=1048580;
- //BA.debugLineNum = 1048580;BA.debugLine="character.Initialize(Me)";
-mostCurrent._character._initialize /*String*/ (null,processBA,characterdetails.getObject());
-RDebugUtils.currentLine=1048582;
- //BA.debugLineNum = 1048582;BA.debugLine="Dim thumbnail As Map = Main.selected.Get(\"thumbna";
+ //BA.debugLineNum = 29;BA.debugLine="character.Initialize(Me)";
+mostCurrent._character._initialize /*String*/ (processBA,characterdetails.getObject());
+ //BA.debugLineNum = 31;BA.debugLine="Dim thumbnail As Map = Main.selected.Get(\"thumbna";
 _thumbnail = new anywheresoftware.b4a.objects.collections.Map();
 _thumbnail.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("thumbnail"))));
-RDebugUtils.currentLine=1048583;
- //BA.debugLineNum = 1048583;BA.debugLine="Dim imageUrl As String = thumbnail.Get(\"path\") &";
+ //BA.debugLineNum = 32;BA.debugLine="Dim imageUrl As String = thumbnail.Get(\"path\") &";
 _imageurl = BA.ObjectToString(_thumbnail.Get((Object)("path")))+"/portrait_xlarge."+BA.ObjectToString(_thumbnail.Get((Object)("extension")));
-RDebugUtils.currentLine=1048586;
- //BA.debugLineNum = 1048586;BA.debugLine="charDetail.Text = Main.selected.Get(\"description\"";
+ //BA.debugLineNum = 34;BA.debugLine="charDetail.Text = Main.selected.Get(\"description\"";
 mostCurrent._chardetail.setText(BA.ObjectToCharSequence(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("description"))));
-RDebugUtils.currentLine=1048588;
- //BA.debugLineNum = 1048588;BA.debugLine="charName.Text = Main.selected.Get(\"name\") & \" det";
+ //BA.debugLineNum = 36;BA.debugLine="charName.Text = Main.selected.Get(\"name\") & \" det";
 mostCurrent._charname.setText(BA.ObjectToCharSequence(BA.ObjectToString(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("name")))+" details"));
-RDebugUtils.currentLine=1048590;
- //BA.debugLineNum = 1048590;BA.debugLine="charRelated.SingleLineLayout.Label.TextColor = Co";
+ //BA.debugLineNum = 38;BA.debugLine="charRelated.SingleLineLayout.Label.TextColor = Co";
 mostCurrent._charrelated.getSingleLineLayout().Label.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Gray);
-RDebugUtils.currentLine=1048591;
- //BA.debugLineNum = 1048591;BA.debugLine="charRelated.AddSingleLine(\"Comics\")";
+ //BA.debugLineNum = 39;BA.debugLine="charRelated.AddSingleLine(\"Comics\")";
 mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Comics"));
-RDebugUtils.currentLine=1048592;
- //BA.debugLineNum = 1048592;BA.debugLine="charRelated.AddSingleLine(\"Series\")";
+ //BA.debugLineNum = 40;BA.debugLine="charRelated.AddSingleLine(\"Series\")";
 mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Series"));
-RDebugUtils.currentLine=1048593;
- //BA.debugLineNum = 1048593;BA.debugLine="charRelated.AddSingleLine(\"Stories\")";
+ //BA.debugLineNum = 41;BA.debugLine="charRelated.AddSingleLine(\"Stories\")";
 mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Stories"));
-RDebugUtils.currentLine=1048595;
- //BA.debugLineNum = 1048595;BA.debugLine="character.DownloadImage(imageUrl)";
-mostCurrent._character._downloadimage /*String*/ (null,_imageurl);
-RDebugUtils.currentLine=1048597;
- //BA.debugLineNum = 1048597;BA.debugLine="End Sub";
+ //BA.debugLineNum = 42;BA.debugLine="charRelated.AddSingleLine(\"Events\")";
+mostCurrent._charrelated.AddSingleLine(BA.ObjectToCharSequence("Events"));
+ //BA.debugLineNum = 44;BA.debugLine="character.DownloadImage(imageUrl)";
+mostCurrent._character._downloadimage /*String*/ (_imageurl);
+ //BA.debugLineNum = 46;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
-RDebugUtils.currentModule="characterdetails";
-RDebugUtils.currentLine=1179648;
- //BA.debugLineNum = 1179648;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=1179650;
- //BA.debugLineNum = 1179650;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 54;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
-RDebugUtils.currentModule="characterdetails";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
-RDebugUtils.currentLine=1114112;
- //BA.debugLineNum = 1114112;BA.debugLine="Sub Activity_Resume";
-RDebugUtils.currentLine=1114114;
- //BA.debugLineNum = 1114114;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 50;BA.debugLine="End Sub";
 return "";
 }
 public static String  _charrelated_itemclick(int _position,Object _value) throws Exception{
-RDebugUtils.currentModule="characterdetails";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "charrelated_itemclick", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "charrelated_itemclick", new Object[] {_position,_value}));}
-RDebugUtils.currentLine=1310720;
- //BA.debugLineNum = 1310720;BA.debugLine="Sub charRelated_ItemClick (Position As Int, Value";
-RDebugUtils.currentLine=1310721;
- //BA.debugLineNum = 1310721;BA.debugLine="selected = Value";
+ //BA.debugLineNum = 57;BA.debugLine="Sub charRelated_ItemClick (Position As Int, Value";
+ //BA.debugLineNum = 58;BA.debugLine="selected = Value";
 _selected = BA.ObjectToString(_value);
-RDebugUtils.currentLine=1310722;
- //BA.debugLineNum = 1310722;BA.debugLine="StartActivity(CharRelatedInfoView)";
+ //BA.debugLineNum = 59;BA.debugLine="StartActivity(CharRelatedInfoView)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._charrelatedinfoview.getObject()));
-RDebugUtils.currentLine=1310723;
- //BA.debugLineNum = 1310723;BA.debugLine="End Sub";
+ //BA.debugLineNum = 60;BA.debugLine="End Sub";
+return "";
+}
+public static String  _globals() throws Exception{
+ //BA.debugLineNum = 13;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 17;BA.debugLine="Private charDetail As Label";
+mostCurrent._chardetail = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 18;BA.debugLine="Private charImage As ImageView";
+mostCurrent._charimage = new anywheresoftware.b4a.objects.ImageViewWrapper();
+ //BA.debugLineNum = 19;BA.debugLine="Private charName As Label";
+mostCurrent._charname = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 20;BA.debugLine="Private charRelated As ListView";
+mostCurrent._charrelated = new anywheresoftware.b4a.objects.ListViewWrapper();
+ //BA.debugLineNum = 22;BA.debugLine="Private character As CharacterController";
+mostCurrent._character = new b4a.MarvelApp.charactercontroller();
+ //BA.debugLineNum = 23;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.samples.httputils2.httpjob  _jobdone(anywheresoftware.b4a.samples.httputils2.httpjob _job) throws Exception{
-RDebugUtils.currentModule="characterdetails";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "jobdone", false))
-	 {return ((anywheresoftware.b4a.samples.httputils2.httpjob) Debug.delegate(mostCurrent.activityBA, "jobdone", new Object[] {_job}));}
-RDebugUtils.currentLine=5308416;
- //BA.debugLineNum = 5308416;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
-RDebugUtils.currentLine=5308417;
- //BA.debugLineNum = 5308417;BA.debugLine="If Job.Success = True Then";
+ //BA.debugLineNum = 62;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
+ //BA.debugLineNum = 63;BA.debugLine="If Job.Success = True Then";
 if (_job._vvv7==anywheresoftware.b4a.keywords.Common.True) { 
-RDebugUtils.currentLine=5308418;
- //BA.debugLineNum = 5308418;BA.debugLine="Select Job.JobName";
+ //BA.debugLineNum = 64;BA.debugLine="Select Job.JobName";
 switch (BA.switchObjectToInt(_job._vvv6,"DownloadImage")) {
 case 0: {
-RDebugUtils.currentLine=5308420;
- //BA.debugLineNum = 5308420;BA.debugLine="charImage.Bitmap = Job.GetBitmap";
+ //BA.debugLineNum = 66;BA.debugLine="charImage.Bitmap = Job.GetBitmap";
 mostCurrent._charimage.setBitmap((android.graphics.Bitmap)(_job._vv1().getObject()));
-RDebugUtils.currentLine=5308421;
- //BA.debugLineNum = 5308421;BA.debugLine="Exit";
+ //BA.debugLineNum = 67;BA.debugLine="Exit";
 if (true) break;
  break; }
 }
 ;
  };
-RDebugUtils.currentLine=5308424;
- //BA.debugLineNum = 5308424;BA.debugLine="Job.Release";
+ //BA.debugLineNum = 70;BA.debugLine="Job.Release";
 _job._vvv5();
-RDebugUtils.currentLine=5308425;
- //BA.debugLineNum = 5308425;BA.debugLine="End Sub";
+ //BA.debugLineNum = 71;BA.debugLine="End Sub";
 return null;
+}
+public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 10;BA.debugLine="Public selected As String";
+_selected = "";
+ //BA.debugLineNum = 11;BA.debugLine="End Sub";
+return "";
 }
 }

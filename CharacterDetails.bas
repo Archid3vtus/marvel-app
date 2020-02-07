@@ -36,7 +36,6 @@ Sub Activity_Create(FirstTime As Boolean)
 	
 	Dim thumbnail As Map = Main.selected.Get("thumbnail")
 	Dim imageUrl As String = thumbnail.Get("path") & "/portrait_xlarge." & thumbnail.Get("extension")
-	'charImage.LoadUrl(imageUrl)
 	
 	charDetail.Text = Main.selected.Get("description")
 	
@@ -46,6 +45,7 @@ Sub Activity_Create(FirstTime As Boolean)
 	charRelated.AddSingleLine("Comics")
 	charRelated.AddSingleLine("Series")
 	charRelated.AddSingleLine("Stories")
+	charRelated.AddSingleLine("Events")
 	
 	character.DownloadImage(imageUrl)
 

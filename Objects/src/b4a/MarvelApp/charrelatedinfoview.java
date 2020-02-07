@@ -33,7 +33,7 @@ public class charrelatedinfoview extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.charrelatedinfoview");
+			processBA = new BA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.charrelatedinfoview");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -328,15 +328,6 @@ public class charrelatedinfoview extends Activity implements B4AActivity{
             
     }
 
-
-
-public static void initializeProcessGlobals() {
-             try {
-                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public anywheresoftware.b4a.objects.LabelWrapper _chosen = null;
 public anywheresoftware.b4a.objects.ScrollViewWrapper _contentlist = null;
@@ -345,63 +336,60 @@ public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2serv
 public b4a.MarvelApp.main _main = null;
 public b4a.MarvelApp.url _url = null;
 public b4a.MarvelApp.characterdetails _characterdetails = null;
+
+public static void initializeProcessGlobals() {
+             try {
+                Class.forName(BA.applicationContext.getPackageName() + ".main").getMethod("initializeProcessGlobals").invoke(null, null);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+}
 public static String  _activity_create(boolean _firsttime) throws Exception{
-RDebugUtils.currentModule="charrelatedinfoview";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
-RDebugUtils.currentLine=1507328;
- //BA.debugLineNum = 1507328;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
-RDebugUtils.currentLine=1507331;
- //BA.debugLineNum = 1507331;BA.debugLine="Activity.LoadLayout(\"CharRelatedInfoView\")";
+ //BA.debugLineNum = 21;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 24;BA.debugLine="Activity.LoadLayout(\"CharRelatedInfoView\")";
 mostCurrent._activity.LoadLayout("CharRelatedInfoView",mostCurrent.activityBA);
-RDebugUtils.currentLine=1507332;
- //BA.debugLineNum = 1507332;BA.debugLine="chosen.Text = Main.selected.Get(\"name\") & \" \" & C";
+ //BA.debugLineNum = 25;BA.debugLine="chosen.Text = Main.selected.Get(\"name\") & \" \" & C";
 mostCurrent._chosen.setText(BA.ObjectToCharSequence(BA.ObjectToString(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get((Object)("name")))+" "+mostCurrent._characterdetails._selected /*String*/ ));
-RDebugUtils.currentLine=1507333;
- //BA.debugLineNum = 1507333;BA.debugLine="chosen.Tag = CharacterDetails.selected.ToLowerCas";
+ //BA.debugLineNum = 26;BA.debugLine="chosen.Tag = CharacterDetails.selected.ToLowerCas";
 mostCurrent._chosen.setTag((Object)(mostCurrent._characterdetails._selected /*String*/ .toLowerCase()));
-RDebugUtils.currentLine=1507335;
- //BA.debugLineNum = 1507335;BA.debugLine="contentLabel.Initialize(\"\")";
+ //BA.debugLineNum = 28;BA.debugLine="contentLabel.Initialize(\"\")";
 mostCurrent._contentlabel.Initialize(mostCurrent.activityBA,"");
-RDebugUtils.currentLine=1507336;
- //BA.debugLineNum = 1507336;BA.debugLine="contentList.Panel.AddView(contentLabel, 0, 0, 100";
+ //BA.debugLineNum = 29;BA.debugLine="contentList.Panel.AddView(contentLabel, 0, 0, 100";
 mostCurrent._contentlist.getPanel().AddView((android.view.View)(mostCurrent._contentlabel.getObject()),(int) (0),(int) (0),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA));
-RDebugUtils.currentLine=1507337;
- //BA.debugLineNum = 1507337;BA.debugLine="contentLabel.Text = GenerateContent";
+ //BA.debugLineNum = 30;BA.debugLine="contentLabel.Text = GenerateContent";
 mostCurrent._contentlabel.setText(BA.ObjectToCharSequence(_generatecontent()));
-RDebugUtils.currentLine=1507338;
- //BA.debugLineNum = 1507338;BA.debugLine="contentLabel.TextColor = Colors.Gray";
+ //BA.debugLineNum = 31;BA.debugLine="contentLabel.TextColor = Colors.Gray";
 mostCurrent._contentlabel.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Gray);
-RDebugUtils.currentLine=1507339;
- //BA.debugLineNum = 1507339;BA.debugLine="contentLabel.TextSize = 24";
+ //BA.debugLineNum = 32;BA.debugLine="contentLabel.TextSize = 24";
 mostCurrent._contentlabel.setTextSize((float) (24));
-RDebugUtils.currentLine=1507341;
- //BA.debugLineNum = 1507341;BA.debugLine="End Sub";
+ //BA.debugLineNum = 34;BA.debugLine="End Sub";
+return "";
+}
+public static String  _activity_pause(boolean _userclosed) throws Exception{
+ //BA.debugLineNum = 40;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 42;BA.debugLine="End Sub";
+return "";
+}
+public static String  _activity_resume() throws Exception{
+ //BA.debugLineNum = 36;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 38;BA.debugLine="End Sub";
 return "";
 }
 public static String  _generatecontent() throws Exception{
-RDebugUtils.currentModule="charrelatedinfoview";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "generatecontent", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "generatecontent", null));}
 anywheresoftware.b4a.objects.collections.Map _content = null;
 anywheresoftware.b4a.objects.collections.List _contentitems = null;
 String _response = "";
 anywheresoftware.b4a.objects.collections.Map _item = null;
-RDebugUtils.currentLine=2686976;
- //BA.debugLineNum = 2686976;BA.debugLine="Private Sub GenerateContent As String";
-RDebugUtils.currentLine=2686977;
- //BA.debugLineNum = 2686977;BA.debugLine="Dim content As Map = Main.selected.Get(chosen.Tag";
+ //BA.debugLineNum = 44;BA.debugLine="Private Sub GenerateContent As String";
+ //BA.debugLineNum = 45;BA.debugLine="Dim content As Map = Main.selected.Get(chosen.Tag";
 _content = new anywheresoftware.b4a.objects.collections.Map();
 _content.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(mostCurrent._main._selected /*anywheresoftware.b4a.objects.collections.Map*/ .Get(mostCurrent._chosen.getTag())));
-RDebugUtils.currentLine=2686978;
- //BA.debugLineNum = 2686978;BA.debugLine="Dim contentItems As List = content.Get(\"items\")";
+ //BA.debugLineNum = 46;BA.debugLine="Dim contentItems As List = content.Get(\"items\")";
 _contentitems = new anywheresoftware.b4a.objects.collections.List();
 _contentitems.setObject((java.util.List)(_content.Get((Object)("items"))));
-RDebugUtils.currentLine=2686980;
- //BA.debugLineNum = 2686980;BA.debugLine="Dim response As String = \"\"";
+ //BA.debugLineNum = 48;BA.debugLine="Dim response As String = \"\"";
 _response = "";
-RDebugUtils.currentLine=2686982;
- //BA.debugLineNum = 2686982;BA.debugLine="For Each item As Map In contentItems";
+ //BA.debugLineNum = 50;BA.debugLine="For Each item As Map In contentItems";
 _item = new anywheresoftware.b4a.objects.collections.Map();
 {
 final anywheresoftware.b4a.BA.IterableList group4 = _contentitems;
@@ -410,34 +398,29 @@ final int groupLen4 = group4.getSize()
 ;
 for (; index4 < groupLen4;index4++){
 _item.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(group4.Get(index4)));
-RDebugUtils.currentLine=2686983;
- //BA.debugLineNum = 2686983;BA.debugLine="response = response & \"• \" & item.Get(\"name\") &";
+ //BA.debugLineNum = 51;BA.debugLine="response = response & \"• \" & item.Get(\"name\") &";
 _response = _response+"• "+BA.ObjectToString(_item.Get((Object)("name")))+anywheresoftware.b4a.keywords.Common.CRLF;
  }
 };
-RDebugUtils.currentLine=2686986;
- //BA.debugLineNum = 2686986;BA.debugLine="Return response";
+ //BA.debugLineNum = 54;BA.debugLine="Return response";
 if (true) return _response;
-RDebugUtils.currentLine=2686987;
- //BA.debugLineNum = 2686987;BA.debugLine="End Sub";
+ //BA.debugLineNum = 55;BA.debugLine="End Sub";
 return "";
 }
-public static String  _activity_pause(boolean _userclosed) throws Exception{
-RDebugUtils.currentModule="charrelatedinfoview";
-RDebugUtils.currentLine=1638400;
- //BA.debugLineNum = 1638400;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=1638402;
- //BA.debugLineNum = 1638402;BA.debugLine="End Sub";
+public static String  _globals() throws Exception{
+ //BA.debugLineNum = 12;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 16;BA.debugLine="Private chosen As Label";
+mostCurrent._chosen = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 17;BA.debugLine="Private contentList As ScrollView";
+mostCurrent._contentlist = new anywheresoftware.b4a.objects.ScrollViewWrapper();
+ //BA.debugLineNum = 18;BA.debugLine="Private contentLabel As Label 'not added from the";
+mostCurrent._contentlabel = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 19;BA.debugLine="End Sub";
 return "";
 }
-public static String  _activity_resume() throws Exception{
-RDebugUtils.currentModule="charrelatedinfoview";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
-RDebugUtils.currentLine=1572864;
- //BA.debugLineNum = 1572864;BA.debugLine="Sub Activity_Resume";
-RDebugUtils.currentLine=1572866;
- //BA.debugLineNum = 1572866;BA.debugLine="End Sub";
+public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 10;BA.debugLine="End Sub";
 return "";
 }
 }

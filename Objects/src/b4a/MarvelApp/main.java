@@ -33,7 +33,7 @@ public class main extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.main");
+			processBA = new BA(this.getApplicationContext(), null, null, "b4a.MarvelApp", "b4a.MarvelApp.main");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -328,73 +328,6 @@ public class main extends Activity implements B4AActivity{
             
     }
 
-
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        anywheresoftware.b4a.samples.httputils2.httputils2service._process_globals();
-		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}
-public static boolean isAnyActivityVisible() {
-    boolean vis = false;
-vis = vis | (main.mostCurrent != null);
-vis = vis | (characterdetails.mostCurrent != null);
-vis = vis | (charrelatedinfoview.mostCurrent != null);
-return vis;}
-
-private static BA killProgramHelper(BA ba) {
-    if (ba == null)
-        return null;
-    anywheresoftware.b4a.BA.SharedProcessBA sharedProcessBA = ba.sharedProcessBA;
-    if (sharedProcessBA == null || sharedProcessBA.activityBA == null)
-        return null;
-    return sharedProcessBA.activityBA.get();
-}
-public static void killProgram() {
-     {
-            Activity __a = null;
-            if (main.previousOne != null) {
-				__a = main.previousOne.get();
-			}
-            else {
-                BA ba = killProgramHelper(main.mostCurrent == null ? null : main.mostCurrent.processBA);
-                if (ba != null) __a = ba.activity;
-            }
-            if (__a != null)
-				__a.finish();}
-
- {
-            Activity __a = null;
-            if (characterdetails.previousOne != null) {
-				__a = characterdetails.previousOne.get();
-			}
-            else {
-                BA ba = killProgramHelper(characterdetails.mostCurrent == null ? null : characterdetails.mostCurrent.processBA);
-                if (ba != null) __a = ba.activity;
-            }
-            if (__a != null)
-				__a.finish();}
-
- {
-            Activity __a = null;
-            if (charrelatedinfoview.previousOne != null) {
-				__a = charrelatedinfoview.previousOne.get();
-			}
-            else {
-                BA ba = killProgramHelper(charrelatedinfoview.mostCurrent == null ? null : charrelatedinfoview.mostCurrent.processBA);
-                if (ba != null) __a = ba.activity;
-            }
-            if (__a != null)
-				__a.finish();}
-
-}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static anywheresoftware.b4a.objects.collections.Map _selected = null;
 public b4a.MarvelApp.charactercontroller _character = null;
@@ -409,111 +342,96 @@ public anywheresoftware.b4a.samples.httputils2.httputils2service _httputils2serv
 public b4a.MarvelApp.url _url = null;
 public b4a.MarvelApp.characterdetails _characterdetails = null;
 public b4a.MarvelApp.charrelatedinfoview _charrelatedinfoview = null;
+
+public static boolean isAnyActivityVisible() {
+    boolean vis = false;
+vis = vis | (main.mostCurrent != null);
+vis = vis | (characterdetails.mostCurrent != null);
+vis = vis | (charrelatedinfoview.mostCurrent != null);
+return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
-RDebugUtils.currentLine=131072;
- //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
-RDebugUtils.currentLine=131075;
- //BA.debugLineNum = 131075;BA.debugLine="Activity.LoadLayout(\"Search\")";
+ //BA.debugLineNum = 41;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 44;BA.debugLine="Activity.LoadLayout(\"Search\")";
 mostCurrent._activity.LoadLayout("Search",mostCurrent.activityBA);
-RDebugUtils.currentLine=131076;
- //BA.debugLineNum = 131076;BA.debugLine="IME.Initialize(\"IME\")";
+ //BA.debugLineNum = 45;BA.debugLine="IME.Initialize(\"IME\")";
 mostCurrent._ime.Initialize("IME");
-RDebugUtils.currentLine=131077;
- //BA.debugLineNum = 131077;BA.debugLine="IME.AddHeightChangedEvent";
+ //BA.debugLineNum = 46;BA.debugLine="IME.AddHeightChangedEvent";
 mostCurrent._ime.AddHeightChangedEvent(mostCurrent.activityBA);
-RDebugUtils.currentLine=131078;
- //BA.debugLineNum = 131078;BA.debugLine="charList.SingleLineLayout.Label.TextColor = Color";
+ //BA.debugLineNum = 47;BA.debugLine="charList.SingleLineLayout.Label.TextColor = Color";
 mostCurrent._charlist.getSingleLineLayout().Label.setTextColor(anywheresoftware.b4a.keywords.Common.Colors.Black);
-RDebugUtils.currentLine=131079;
- //BA.debugLineNum = 131079;BA.debugLine="character.Initialize(Me)";
-mostCurrent._character._initialize /*String*/ (null,processBA,main.getObject());
-RDebugUtils.currentLine=131080;
- //BA.debugLineNum = 131080;BA.debugLine="End Sub";
+ //BA.debugLineNum = 48;BA.debugLine="character.Initialize(Me)";
+mostCurrent._character._initialize /*String*/ (processBA,main.getObject());
+ //BA.debugLineNum = 49;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
-RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=262144;
- //BA.debugLineNum = 262144;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=262146;
- //BA.debugLineNum = 262146;BA.debugLine="End Sub";
+ //BA.debugLineNum = 55;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 57;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
-RDebugUtils.currentLine=196608;
- //BA.debugLineNum = 196608;BA.debugLine="Sub Activity_Resume";
-RDebugUtils.currentLine=196610;
- //BA.debugLineNum = 196610;BA.debugLine="End Sub";
+ //BA.debugLineNum = 51;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 53;BA.debugLine="End Sub";
 return "";
 }
 public static String  _charlist_itemclick(int _position,Object _value) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "charlist_itemclick", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "charlist_itemclick", new Object[] {_position,_value}));}
-RDebugUtils.currentLine=458752;
- //BA.debugLineNum = 458752;BA.debugLine="Sub charList_ItemClick (Position As Int, Value As";
-RDebugUtils.currentLine=458753;
- //BA.debugLineNum = 458753;BA.debugLine="selected = characterList.Get(Position)";
+ //BA.debugLineNum = 87;BA.debugLine="Sub charList_ItemClick (Position As Int, Value As";
+ //BA.debugLineNum = 88;BA.debugLine="selected = characterList.Get(Position)";
 _selected.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(mostCurrent._characterlist.Get(_position)));
-RDebugUtils.currentLine=458754;
- //BA.debugLineNum = 458754;BA.debugLine="StartActivity(CharacterDetails)";
+ //BA.debugLineNum = 89;BA.debugLine="StartActivity(CharacterDetails)";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(mostCurrent._characterdetails.getObject()));
-RDebugUtils.currentLine=458755;
- //BA.debugLineNum = 458755;BA.debugLine="End Sub";
+ //BA.debugLineNum = 90;BA.debugLine="End Sub";
+return "";
+}
+public static String  _globals() throws Exception{
+ //BA.debugLineNum = 22;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 27;BA.debugLine="Private character As CharacterController";
+mostCurrent._character = new b4a.MarvelApp.charactercontroller();
+ //BA.debugLineNum = 28;BA.debugLine="Private jsonParser As JSONParser";
+mostCurrent._jsonparser = new anywheresoftware.b4a.objects.collections.JSONParser();
+ //BA.debugLineNum = 29;BA.debugLine="Private IME As IME";
+mostCurrent._ime = new anywheresoftware.b4a.objects.IME();
+ //BA.debugLineNum = 32;BA.debugLine="Private charList As ListView";
+mostCurrent._charlist = new anywheresoftware.b4a.objects.ListViewWrapper();
+ //BA.debugLineNum = 33;BA.debugLine="Private searchBar As EditText";
+mostCurrent._searchbar = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 34;BA.debugLine="Private send As Button";
+mostCurrent._send = new anywheresoftware.b4a.objects.ButtonWrapper();
+ //BA.debugLineNum = 35;BA.debugLine="Private loading As ProgressBar";
+mostCurrent._loading = new anywheresoftware.b4a.objects.ProgressBarWrapper();
+ //BA.debugLineNum = 38;BA.debugLine="Private characterList As List";
+mostCurrent._characterlist = new anywheresoftware.b4a.objects.collections.List();
+ //BA.debugLineNum = 39;BA.debugLine="End Sub";
 return "";
 }
 public static String  _ime_heightchanged(int _newheight,int _oldheight) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "ime_heightchanged", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "ime_heightchanged", new Object[] {_newheight,_oldheight}));}
-RDebugUtils.currentLine=3866624;
- //BA.debugLineNum = 3866624;BA.debugLine="Sub IME_HeightChanged(NewHeight As Int, OldHeight";
-RDebugUtils.currentLine=3866625;
- //BA.debugLineNum = 3866625;BA.debugLine="searchBar.Top = NewHeight - searchBar.Height";
+ //BA.debugLineNum = 92;BA.debugLine="Sub IME_HeightChanged(NewHeight As Int, OldHeight";
+ //BA.debugLineNum = 93;BA.debugLine="searchBar.Top = NewHeight - searchBar.Height";
 mostCurrent._searchbar.setTop((int) (_newheight-mostCurrent._searchbar.getHeight()));
-RDebugUtils.currentLine=3866626;
- //BA.debugLineNum = 3866626;BA.debugLine="send.Top = NewHeight - send.Height";
+ //BA.debugLineNum = 94;BA.debugLine="send.Top = NewHeight - send.Height";
 mostCurrent._send.setTop((int) (_newheight-mostCurrent._send.getHeight()));
-RDebugUtils.currentLine=3866627;
- //BA.debugLineNum = 3866627;BA.debugLine="charList.Height = searchBar.Top - charList.Top";
+ //BA.debugLineNum = 95;BA.debugLine="charList.Height = searchBar.Top - charList.Top";
 mostCurrent._charlist.setHeight((int) (mostCurrent._searchbar.getTop()-mostCurrent._charlist.getTop()));
-RDebugUtils.currentLine=3866628;
- //BA.debugLineNum = 3866628;BA.debugLine="End Sub";
+ //BA.debugLineNum = 96;BA.debugLine="End Sub";
 return "";
 }
 public static anywheresoftware.b4a.samples.httputils2.httpjob  _jobdone(anywheresoftware.b4a.samples.httputils2.httpjob _job) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "jobdone", false))
-	 {return ((anywheresoftware.b4a.samples.httputils2.httpjob) Debug.delegate(mostCurrent.activityBA, "jobdone", new Object[] {_job}));}
 anywheresoftware.b4a.objects.collections.Map _data = null;
 anywheresoftware.b4a.objects.collections.Map _entry = null;
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
-RDebugUtils.currentLine=327681;
- //BA.debugLineNum = 327681;BA.debugLine="If Job.Success = True Then";
+ //BA.debugLineNum = 59;BA.debugLine="Sub JobDone(Job As HttpJob) As HttpJob";
+ //BA.debugLineNum = 60;BA.debugLine="If Job.Success = True Then";
 if (_job._vvv7==anywheresoftware.b4a.keywords.Common.True) { 
-RDebugUtils.currentLine=327682;
- //BA.debugLineNum = 327682;BA.debugLine="Select Job.JobName";
+ //BA.debugLineNum = 61;BA.debugLine="Select Job.JobName";
 switch (BA.switchObjectToInt(_job._vvv6,"GetCharacter")) {
 case 0: {
-RDebugUtils.currentLine=327684;
- //BA.debugLineNum = 327684;BA.debugLine="jsonParser.Initialize(Job.GetString)";
+ //BA.debugLineNum = 63;BA.debugLine="jsonParser.Initialize(Job.GetString)";
 mostCurrent._jsonparser.Initialize(_job._vv5());
-RDebugUtils.currentLine=327685;
- //BA.debugLineNum = 327685;BA.debugLine="Dim data As Map = jsonParser.NextObject.Get(\"d";
+ //BA.debugLineNum = 64;BA.debugLine="Dim data As Map = jsonParser.NextObject.Get(\"d";
 _data = new anywheresoftware.b4a.objects.collections.Map();
 _data.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(mostCurrent._jsonparser.NextObject().Get((Object)("data"))));
-RDebugUtils.currentLine=327686;
- //BA.debugLineNum = 327686;BA.debugLine="characterList = data.Get(\"results\")";
+ //BA.debugLineNum = 65;BA.debugLine="characterList = data.Get(\"results\")";
 mostCurrent._characterlist.setObject((java.util.List)(_data.Get((Object)("results"))));
-RDebugUtils.currentLine=327687;
- //BA.debugLineNum = 327687;BA.debugLine="For Each entry As Map In characterList";
+ //BA.debugLineNum = 66;BA.debugLine="For Each entry As Map In characterList";
 _entry = new anywheresoftware.b4a.objects.collections.Map();
 {
 final anywheresoftware.b4a.BA.IterableList group7 = mostCurrent._characterlist;
@@ -522,51 +440,59 @@ final int groupLen7 = group7.getSize()
 ;
 for (; index7 < groupLen7;index7++){
 _entry.setObject((anywheresoftware.b4a.objects.collections.Map.MyMap)(group7.Get(index7)));
-RDebugUtils.currentLine=327688;
- //BA.debugLineNum = 327688;BA.debugLine="charList.AddSingleLine(entry.Get(\"name\"))";
+ //BA.debugLineNum = 67;BA.debugLine="charList.AddSingleLine(entry.Get(\"name\"))";
 mostCurrent._charlist.AddSingleLine(BA.ObjectToCharSequence(_entry.Get((Object)("name"))));
  }
 };
-RDebugUtils.currentLine=327691;
- //BA.debugLineNum = 327691;BA.debugLine="loading.Visible = False";
+ //BA.debugLineNum = 70;BA.debugLine="loading.Visible = False";
 mostCurrent._loading.setVisible(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=327692;
- //BA.debugLineNum = 327692;BA.debugLine="loading.Enabled = False";
+ //BA.debugLineNum = 71;BA.debugLine="loading.Enabled = False";
 mostCurrent._loading.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=327693;
- //BA.debugLineNum = 327693;BA.debugLine="Exit";
+ //BA.debugLineNum = 72;BA.debugLine="Exit";
 if (true) break;
  break; }
 }
 ;
  };
-RDebugUtils.currentLine=327696;
- //BA.debugLineNum = 327696;BA.debugLine="Job.Release";
+ //BA.debugLineNum = 75;BA.debugLine="Job.Release";
 _job._vvv5();
-RDebugUtils.currentLine=327697;
- //BA.debugLineNum = 327697;BA.debugLine="End Sub";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return null;
 }
+
+public static void initializeProcessGlobals() {
+    
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        anywheresoftware.b4a.samples.httputils2.httputils2service._process_globals();
+main._process_globals();
+url._process_globals();
+characterdetails._process_globals();
+charrelatedinfoview._process_globals();
+		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 15;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 19;BA.debugLine="Public selected As Map";
+_selected = new anywheresoftware.b4a.objects.collections.Map();
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
+return "";
+}
 public static String  _send_click() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "send_click", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "send_click", null));}
-RDebugUtils.currentLine=393216;
- //BA.debugLineNum = 393216;BA.debugLine="Sub send_Click";
-RDebugUtils.currentLine=393217;
- //BA.debugLineNum = 393217;BA.debugLine="charList.Clear";
+ //BA.debugLineNum = 79;BA.debugLine="Sub send_Click";
+ //BA.debugLineNum = 80;BA.debugLine="charList.Clear";
 mostCurrent._charlist.Clear();
-RDebugUtils.currentLine=393218;
- //BA.debugLineNum = 393218;BA.debugLine="loading.Enabled = True";
+ //BA.debugLineNum = 81;BA.debugLine="loading.Enabled = True";
 mostCurrent._loading.setEnabled(anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=393219;
- //BA.debugLineNum = 393219;BA.debugLine="loading.Visible = True";
+ //BA.debugLineNum = 82;BA.debugLine="loading.Visible = True";
 mostCurrent._loading.setVisible(anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=393221;
- //BA.debugLineNum = 393221;BA.debugLine="character.GetCharacter(searchBar.Text, \"99\")";
-mostCurrent._character._getcharacter /*String*/ (null,mostCurrent._searchbar.getText(),(int)(Double.parseDouble("99")));
-RDebugUtils.currentLine=393222;
- //BA.debugLineNum = 393222;BA.debugLine="End Sub";
+ //BA.debugLineNum = 84;BA.debugLine="character.GetCharacter(searchBar.Text, \"99\")";
+mostCurrent._character._getcharacter /*String*/ (mostCurrent._searchbar.getText(),(int)(Double.parseDouble("99")));
+ //BA.debugLineNum = 85;BA.debugLine="End Sub";
 return "";
 }
 }
